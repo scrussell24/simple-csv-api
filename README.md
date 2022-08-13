@@ -1,6 +1,6 @@
 # simple-csv-api
 
-![tests](https://github.com/scrussell24/simple_csv_api/actions/workflows/main.yml/badge.svg)
+[![run-tests](https://github.com/scrussell24/simple-csv-api/actions/workflows/main.yml/badge.svg)](https://github.com/scrussell24/simple-csv-api/actions/workflows/main.yml)
 
 A simple web service for uploading csv data.
 
