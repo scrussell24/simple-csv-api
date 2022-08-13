@@ -1,5 +1,7 @@
 # simple-csv-api
 
+https://github.com/scrussell24/simple_csv_api/actions/workflows/main.yml/badge.svg
+
 A simple web service for uploading csv data.
 
 ## Usage
