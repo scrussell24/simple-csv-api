@@ -1,0 +1,9 @@
+[tool.coverage.run]
+omit = [
+    "api/migrations/*"
+]
+
+[tool.pytest.ini_options]
+markers = [
+    "django_db",
+]

@@ -1,0 +1,9 @@
+env/
+TODO.md
+*.pyc
+.coverage
+.mypy_cache
+.pytest_cache
+scratch.*
+db.sqlite3
+files/
