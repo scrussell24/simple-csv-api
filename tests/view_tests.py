@@ -93,7 +93,7 @@ def test_create_file_missing_value_row():
 
 @pytest.mark.django_db()
 def test_create_file_success(monkeypatch, mock_file_storage):
-    monkeypatch.setattr(views, "LocalFileSystem", mock_file_storage, raising=True)
+    monkeypatch.setattr(views, "FileStorage", mock_file_storage, raising=True)
 
     headers = {
         "HTTP_X_Filename": "test.csv",
@@ -113,7 +113,7 @@ def test_create_file_success(monkeypatch, mock_file_storage):
 
 @pytest.mark.django_db()
 def test_create_file_predicted_columns(monkeypatch, mock_file_storage):
-    monkeypatch.setattr(views, "LocalFileSystem", mock_file_storage, raising=True)
+    monkeypatch.setattr(views, "FileStorage", mock_file_storage, raising=True)
 
     headers = {
         "HTTP_X_Filename": "test.csv",
