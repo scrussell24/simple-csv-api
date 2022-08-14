@@ -16,7 +16,7 @@ Content-Type: text/csv
 
 Required Headers:
 * X-Filename
-* X-Delimeter
+* X-Delimiter
 * X-Quotechar
 
 ### Example HTTP request
