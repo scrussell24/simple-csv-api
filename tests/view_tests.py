@@ -27,14 +27,14 @@ def mock_file_storage():
 CLIENT = Client()
 
 
-def test_create_file_success(monkeypatch, mock_file_storage):
+def test_create_file_success():
     response = CLIENT.post(
         reverse("csv_files-list"), data=EXAMPLE_CSV, content_type="text/plain"
     )
     assert response.status_code == 415
 
 
-def test_create_file_missing_filename_header(monkeypatch, mock_file_storage):
+def test_create_file_missing_filename_header():
     headers = {
         "HTTP_X_Delimiter": ",",
         "HTTP_X_Quotechar": "",
@@ -48,7 +48,7 @@ def test_create_file_missing_filename_header(monkeypatch, mock_file_storage):
     assert response.status_code == 400
 
 
-def test_create_file_missing_delimiter(monkeypatch, mock_file_storage):
+def test_create_file_missing_delimiter():
     headers = {
         "HTTP_X_Filename": "test.csv",
         "HTTP_X_Quotechar": "",
@@ -62,7 +62,7 @@ def test_create_file_missing_delimiter(monkeypatch, mock_file_storage):
     assert response.status_code == 400
 
 
-def test_create_file_missing_quotechar(monkeypatch, mock_file_storage):
+def test_create_file_missing_quotechar():
     headers = {
         "HTTP_X_Filename": "test.csv",
         "HTTP_X_Delimiter": ",",
@@ -76,7 +76,7 @@ def test_create_file_missing_quotechar(monkeypatch, mock_file_storage):
     assert response.status_code == 400
 
 
-def test_create_file_missing_value_row(monkeypatch, mock_file_storage):
+def test_create_file_missing_value_row():
     headers = {
         "HTTP_X_Filename": "test.csv",
         "HTTP_X_Delimiter": ",",
