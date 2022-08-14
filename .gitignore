@@ -6,4 +6,4 @@ TODO.md
 .pytest_cache
 scratch.*
 db.sqlite3
-files/
+files/*.csv
