@@ -15,19 +15,13 @@ class CsvParser(BaseParser):
         headers = parser_context["request"].headers
 
         # validate required headers
-        for required_header in ["X-Filename"]:
+        for required_header in ["X-Filename", "X-Delimiter", "X-Quotechar"]:
             if required_header not in headers.keys():
                 raise ParseError(f"Missing required header {required_header}")
 
         filename = headers.get("X-Filename")
         delimiter = headers.get("X-Delimiter")
         quotechar = headers.get("X-Quotechar")
-
-        if delimiter is None:
-            raise ParseError("Missing required header X-Delimiter")
-
-        if quotechar is None:
-            raise ParseError("Missing required header X-Quotechar")
 
         # attempt to parse all rows and predict column datatypes
         content = stream.read().decode()
