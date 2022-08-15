@@ -24,32 +24,36 @@ class CsvParser(BaseParser):
         quotechar = headers.get("X-Quotechar")
 
         # attempt to parse all rows and predict column datatypes
-        content = stream.read().decode()
-        if quotechar:
-            csv_reader = csv.reader(
-                StringIO(content), delimiter=delimiter, quotechar=quotechar
-            )
-        else:
-            csv_reader = csv.reader(StringIO(content), delimiter=delimiter)
-
-        # extract column names
-        columns = []
-        header_row = next(csv_reader)
-
-        # We just use the first row of values to predict the column datatypes
         try:
-            value_row = next(csv_reader)
-        except StopIteration as _:
-            traceback.print_exc()
-            raise ParseError("Value row is required")
+            content = stream.read().decode()
+            if quotechar:
+                csv_reader = csv.reader(
+                    StringIO(content), delimiter=delimiter, quotechar=quotechar
+                )
+            else:
+                csv_reader = csv.reader(StringIO(content), delimiter=delimiter)
 
-        for index, col_name in enumerate(header_row):
-            columns.append(
-                {
-                    "name": col_name,
-                    "column_datatype": predict_datatype(value_row[index]).value,
-                }
-            )
+            # extract column names
+            columns = []
+            header_row = next(csv_reader)
+
+            # We just use the first row of values to predict the column datatypes
+            try:
+                value_row = next(csv_reader)
+            except StopIteration as _:
+                traceback.print_exc()
+                raise ParseError("Value row is required")
+
+            for index, col_name in enumerate(header_row):
+                columns.append(
+                    {
+                        "name": col_name,
+                        "column_datatype": predict_datatype(value_row[index]).value,
+                    }
+                )
+        except Exception as _:
+            traceback.print_exc()
+            raise ParseError("Unable to parse csv data")
 
         return {
             "name": filename,
