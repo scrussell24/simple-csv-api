@@ -1,11 +1,12 @@
 import os
-from abc import ABC
+from abc import ABC, abstractmethod
 from uuid import uuid4
 
 
 class FileStorage(ABC):
     """Base class to abstract differnt types of file storage methods"""
 
+    @abstractmethod
     def write(self, filename: str, content: str) -> str:
         ...
 
