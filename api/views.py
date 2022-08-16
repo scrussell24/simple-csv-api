@@ -1,5 +1,4 @@
-from rest_framework import mixins, permissions, status, viewsets
-from rest_framework.response import Response
+from rest_framework import mixins, viewsets
 
 from api.file_storage import LocalFileSystem as FileStorage
 from api.parsers import CsvParser
